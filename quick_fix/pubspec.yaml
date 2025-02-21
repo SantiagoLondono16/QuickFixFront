@@ -32,7 +32,7 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.8
   http: ^1.3.0 # Para consumir API REST
-  provider: ^6.0.5 # Gestión de estado
+  provider: ^6.1.2 # Gestión de estado
   flutter_secure_storage: ^8.0.0 # Almacenamiento seguro de tokens
   shared_preferences: ^2.0.8 # Almacenamiento local de datos simples
 
