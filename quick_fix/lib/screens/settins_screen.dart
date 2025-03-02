@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:quick_fix/widgets/custom_bottom_navigation_bar.dart';
+import '../providers/auth_provider.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -119,11 +122,14 @@ class SettingsScreen extends StatelessWidget {
             child: const Text("Cancel"),
           ),
           TextButton(
-            onPressed: () {
+            onPressed: () async {
               Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text("Logged out successfully")),
-              );
+
+              // 🔥 Llamamos al logout del AuthProvider
+              await Provider.of<AuthProvider>(context, listen: false).logout();
+
+              // 🔄 Redirigimos al usuario al LoginScreen
+              GoRouter.of(context).go('/login');
             },
             child: const Text("Logout", style: TextStyle(color: Colors.red)),
           ),
