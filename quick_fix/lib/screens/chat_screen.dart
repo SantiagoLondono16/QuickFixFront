@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quick_fix/domain/entities/message.dart';
+import 'package:quick_fix/entities/message.dart';
 import 'package:quick_fix/providers/chat_provider.dart';
 import 'package:quick_fix/widgets/MyMessageBubble.dart';
 import 'package:quick_fix/widgets/YouMessageBubble.dart';

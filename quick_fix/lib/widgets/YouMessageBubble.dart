@@ -23,15 +23,15 @@ class Youmessagebubble extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 5),
-        _ImageBubble(),
-        const SizedBox(height: 10),
+        //const SizedBox(height: 5),
+        //_ImageBubble(),
+        //const SizedBox(height: 10),
       ],
     );
   }
 }
 
-class _ImageBubble extends StatelessWidget {
+/*class _ImageBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -54,4 +54,4 @@ class _ImageBubble extends StatelessWidget {
           },
         ));
   }
-}
+}*/
