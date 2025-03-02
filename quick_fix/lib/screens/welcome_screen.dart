@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -10,10 +11,10 @@ class WelcomeScreen extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           // Fondo con imagen
-          // Image.asset(
-          //"assets/images/welcome_background.jpg",
-          // fit: BoxFit.cover,
-          //),
+          Image.asset(
+            "assets/Plomero.jpg",
+            fit: BoxFit.cover,
+          ),
           // Capa de color con transparencia
           Container(
             color: Colors.black.withOpacity(0.5),
@@ -33,7 +34,7 @@ class WelcomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               const Text(
-                "Plataforma de Servicios para el hogar, Conectando usuarios con proveedores confiables”",
+                "Plataforma de Servicios para el hogar, Conectando usuarios con proveedores confiables",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 18,
@@ -44,7 +45,7 @@ class WelcomeScreen extends StatelessWidget {
               // Botón de Iniciar Sesión
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, "/login");
+                  context.go('/login');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
@@ -58,7 +59,7 @@ class WelcomeScreen extends StatelessWidget {
               // Botón de Registro
               OutlinedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, "/register");
+                  context.go('/register');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.teal,

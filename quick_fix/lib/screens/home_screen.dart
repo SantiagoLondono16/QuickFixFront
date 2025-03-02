@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:quick_fix/widgets/custom_bottom_navigation_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -6,50 +8,48 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-  appBar: AppBar(
-    backgroundColor: Colors.black,
-    title: Row(
-      children: [
-        ClipOval(
-          child: Image.asset(
-            "assets/Logo.jpg", // Reemplaza con la ruta correcta
-            width: 30,
-            height: 30,
-            fit: BoxFit.cover,
-          ),
-        ),
-        SizedBox(width: 8),
-        Text.rich(
-          TextSpan(
-            children: [
-              TextSpan(
-                text: 'Quick ',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold),
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: Row(
+          children: [
+            ClipOval(
+              child: Image.asset(
+                "assets/Logo.jpg", // Reemplaza con la ruta correcta
+                width: 30,
+                height: 30,
+                fit: BoxFit.cover,
               ),
+            ),
+            SizedBox(width: 8),
+            Text.rich(
               TextSpan(
-                text: 'Fix',
-                style: TextStyle(
-                    color: Colors.blue,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold),
+                children: [
+                  TextSpan(
+                    text: 'Quick ',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  TextSpan(
+                    text: 'Fix',
+                    style: TextStyle(
+                        color: Colors.blue,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      ],
-    ),
-    actions: [
-      IconButton(
-        onPressed: () {},
-        icon: const Icon(Icons.notifications, color: Colors.white),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.notifications, color: Colors.white),
+          ),
+        ],
       ),
-    ],
-  ),
-
-
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
@@ -110,22 +110,7 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-  type: BottomNavigationBarType.fixed,
-  selectedItemColor: Colors.blue,
-  unselectedItemColor: Colors.grey,
-  items: const [
-    BottomNavigationBarItem(icon: Icon(Icons.home), label: "Inicio"),
-    BottomNavigationBarItem(icon: Icon(Icons.search), label: "Buscar"),
-    BottomNavigationBarItem(icon: Icon(Icons.work), label: "Mis Servicios"),
-    BottomNavigationBarItem(icon: Icon(Icons.person), label: "Perfil"),
-  ],
-  onTap: (index) {
-
-    
-  },
-),
-
+      bottomNavigationBar: const CustomBottomNavigationBar(currentIndex: 0),
     );
   }
 }
@@ -163,7 +148,7 @@ class ServiceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 4, 
+      elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: ListTile(
         contentPadding: const EdgeInsets.all(10),
@@ -181,7 +166,8 @@ class ServiceCard extends StatelessWidget {
             Text(service),
             Row(
               children: List.generate(5, (index) {
-                return Icon(Icons.star, color: index < 4 ? Colors.amber : Colors.grey, size: 16);
+                return Icon(Icons.star,
+                    color: index < 4 ? Colors.amber : Colors.grey, size: 16);
               }),
             ),
           ],
@@ -189,7 +175,8 @@ class ServiceCard extends StatelessWidget {
         trailing: ElevatedButton(
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.blue,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           ),
           onPressed: () {},
           child: const Text("Contratar", style: TextStyle(color: Colors.white)),
@@ -198,4 +185,3 @@ class ServiceCard extends StatelessWidget {
     );
   }
 }
-

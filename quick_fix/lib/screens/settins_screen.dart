@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quick_fix/widgets/custom_bottom_navigation_bar.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -88,6 +89,7 @@ class SettingsScreen extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: const CustomBottomNavigationBar(currentIndex: 2),
     );
   }
 
