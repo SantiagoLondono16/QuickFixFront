@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quick_fix/screens/History_screen.dart';
 import 'package:quick_fix/screens/provider_home_screen.dart';
+import 'package:quick_fix/screens/provider_settings_screen.dart';
 import 'package:quick_fix/screens/request_service.dart';
 import 'package:quick_fix/screens/settins_screen.dart';
 import 'package:quick_fix/screens/welcome_screen.dart';
@@ -52,6 +53,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/history',
       builder: (context, state) => const HistoryScreen(),
+    ),
+    GoRoute(
+      path: '/provider-settings',
+      builder: (context, state) => const ProviderSettingsScreen(),
     ),
   ],
 );

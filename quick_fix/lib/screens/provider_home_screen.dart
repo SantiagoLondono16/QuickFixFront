@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:quick_fix/widgets/provider_custom-bottom_navigation.dart';
 
 class ProviderHomeScreen extends StatelessWidget {
   const ProviderHomeScreen({super.key});
@@ -7,11 +9,44 @@ class ProviderHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Panel de Proveedor"),
+        backgroundColor: Colors.black,
+        title: Row(
+          children: [
+            ClipOval(
+              child: Image.asset(
+                "assets/Logo.jpg", // Reemplaza con la ruta correcta
+                width: 30,
+                height: 30,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(width: 8),
+            Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(
+                    text: 'Quick ',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  TextSpan(
+                    text: 'Fix',
+                    style: TextStyle(
+                        color: Colors.blue,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.notifications),
+            icon: const Icon(Icons.notifications, color: Colors.white),
           ),
         ],
       ),
@@ -25,45 +60,43 @@ class ProviderHomeScreen extends StatelessWidget {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
-
             Expanded(
               child: ListView(
                 children: const [
-                  ServiceRequestCard(clientName: "Carlos López", service: "Reparación de tuberías"),
-                  ServiceRequestCard(clientName: "Ana Martínez", service: "Instalación de aire acondicionado"),
+                  ServiceRequestCard(
+                      clientName: "Carlos López",
+                      service: "Reparación de tuberías"),
+                  ServiceRequestCard(
+                      clientName: "Ana Martínez",
+                      service: "Instalación de aire acondicionado"),
                 ],
               ),
             ),
-
             const SizedBox(height: 20),
             const Text(
               "Mis Trabajos Activos",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
-
             Expanded(
               child: ListView(
                 children: const [
-                  ActiveServiceCard(clientName: "Roberto García", service: "Revisión eléctrica", status: "En progreso"),
-                  ActiveServiceCard(clientName: "María Pérez", service: "Pintura de habitación", status: "Pendiente"),
+                  ActiveServiceCard(
+                      clientName: "Roberto García",
+                      service: "Revisión eléctrica",
+                      status: "En progreso"),
+                  ActiveServiceCard(
+                      clientName: "María Pérez",
+                      service: "Pintura de habitación",
+                      status: "Pendiente"),
                 ],
               ),
             ),
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Inicio"),
-          BottomNavigationBarItem(icon: Icon(Icons.list), label: "Solicitudes"),
-          BottomNavigationBarItem(icon: Icon(Icons.work), label: "Mis Trabajos"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Perfil"),
-        ],
-      ),
+      bottomNavigationBar:
+          const ProviderCustomBottomNavigationBar(currentIndex: 0),
     );
   }
 }
@@ -82,7 +115,8 @@ class ServiceRequestCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 3,
+      elevation: 4,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: ListTile(
         leading: const Icon(Icons.handyman, color: Colors.blue),
         title: Text(clientName),
@@ -112,9 +146,10 @@ class ActiveServiceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 3,
+      elevation: 4,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: ListTile(
-        leading: const Icon(Icons.work, color: Colors.green),
+        leading: const Icon(Icons.work, color: Colors.blue),
         title: Text(clientName),
         subtitle: Text(service),
         trailing: Text(
