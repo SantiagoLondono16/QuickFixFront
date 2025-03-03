@@ -11,6 +11,8 @@ import 'screens/login_screen.dart';
 import 'screens/register_screen.dart';
 import 'screens/profile_screen.dart';
 import 'screens/chat_screen.dart';
+import 'screens/provider_requests_screen.dart';
+import 'screens/provider_services_screen.dart';
 
 final GoRouter router = GoRouter(
   routes: [
@@ -57,6 +59,14 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/provider-settings',
       builder: (context, state) => const ProviderSettingsScreen(),
+    ),
+    GoRoute(
+      path: '/provider-services',
+      builder: (context, state) => const ProviderServicesScreen(),
+    ),
+    GoRoute(
+      path: '/provider-requests',
+      builder: (context, state) => const ProviderRequestsScreen(),
     ),
   ],
 );
