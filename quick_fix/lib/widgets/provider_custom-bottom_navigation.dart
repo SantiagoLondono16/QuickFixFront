@@ -26,6 +26,13 @@ class ProviderCustomBottomNavigationBar extends StatelessWidget {
         } else if (index == 3) {
           context.go('/provider-settings');
         }
+        else if (index == 1) {
+        context.go('/provider-requests');
+        }
+        else if (index == 2) {
+          context.go('/provider-services');
+        }
+
       },
     );
   }
