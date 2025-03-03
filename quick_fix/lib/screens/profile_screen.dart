@@ -1,13 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, String>> _reviews = [
+      {
+        "user": "Alice",
+        "review": "Excelente servicio, muy profesional.",
+      },
+      {
+        "user": "Bob",
+        "review": "Muy buen trabajo, lo recomiendo.",
+      },
+      {
+        "user": "Charlie",
+        "review": "Servicio rápido y eficiente.",
+      },
+    ];
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Profile"),
+        title: const Text("Perfil"),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            context.go('/home');
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -32,9 +54,9 @@ class ProfileScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      _buildCategoryChip("Moving"),
-                      _buildCategoryChip("Plumbing"),
-                      _buildCategoryChip("Carpentry"),
+                      _buildCategoryChip("Mudanza"),
+                      _buildCategoryChip("Plomería"),
+                      _buildCategoryChip("Carpintería"),
                     ],
                   ),
                   const SizedBox(height: 10),
@@ -46,7 +68,7 @@ class ProfileScreen extends StatelessWidget {
 
             // Descripción
             const Text(
-              "About me",
+              "Acerca de mí",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 5),
@@ -60,7 +82,7 @@ class ProfileScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
-                Text("📍 City: Medellín", style: TextStyle(fontSize: 16)),
+                Text("📍 Ciudad: Medellín", style: TextStyle(fontSize: 16)),
                 Text("\$100,000 /hr",
                     style:
                         TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
@@ -77,7 +99,21 @@ class ProfileScreen extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                   textStyle: const TextStyle(fontSize: 18),
                 ),
-                child: const Text("Hire service"),
+                child: const Text("Contratar servicio"),
+              ),
+            ),
+            const SizedBox(height: 20),
+
+            // Reseñas de usuarios
+            const Text(
+              "Reseñas de usuarios",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            Expanded(
+              child: ListView(
+                children:
+                    _reviews.map((review) => _buildReview(review)).toList(),
               ),
             ),
           ],
@@ -107,6 +143,18 @@ class ProfileScreen extends StatelessWidget {
           color: Colors.amber,
         );
       }),
+    );
+  }
+
+  // Widget para mostrar una reseña
+  Widget _buildReview(Map<String, String> review) {
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 5),
+      child: ListTile(
+        leading: const Icon(Icons.person),
+        title: Text(review["user"]!),
+        subtitle: Text(review["review"]!),
+      ),
     );
   }
 }

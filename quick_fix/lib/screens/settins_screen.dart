@@ -11,7 +11,7 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Settings"),
+        title: const Text("Configuraciones"),
       ),
       body: ListView(
         padding: const EdgeInsets.all(20),
@@ -28,48 +28,37 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 const Text(
-                  "John Doe",
+                  "Juan Ramirez",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
           ),
           const SizedBox(height: 30),
-
-          // Opciones de configuración
           _buildSettingsOption(
             context,
-            title: "My Services",
+            title: "Mis Servicios",
             icon: Icons.build,
-            onTap: () {},
+            onTap: () {
+              GoRouter.of(context).go('/history');
+            },
           ),
+
           _buildSettingsOption(
             context,
-            title: "Messages",
-            icon: Icons.message,
-            onTap: () {},
-          ),
-          _buildSettingsOption(
-            context,
-            title: "Notifications",
-            icon: Icons.notifications,
-            onTap: () {},
-          ),
-          _buildSettingsOption(
-            context,
-            title: "Help",
+            title: "Ayuda",
             icon: Icons.help_outline,
             onTap: () {},
           ),
           _buildSettingsOption(
             context,
-            title: "Language",
+            title: "Idioma",
             icon: Icons.language,
             onTap: () {},
           ),
           _buildSettingsOption(
             context,
-            title: "Privacy & Security",
+            title: "Privacidad y Seguridad",
             icon: Icons.lock,
             onTap: () {},
           ),
@@ -87,7 +76,7 @@ class SettingsScreen extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                 textStyle: const TextStyle(fontSize: 18),
               ),
-              child: const Text("Logout"),
+              child: const Text("Cerrar Sesion"),
             ),
           ),
         ],
@@ -114,12 +103,12 @@ class SettingsScreen extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text("Logout"),
-        content: const Text("Are you sure you want to log out?"),
+        title: const Text("Cerrar Sesion"),
+        content: const Text("Estas seguro de que quieres Cerrar tu Perfil"),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text("Cancel"),
+            child: const Text("Cancelar"),
           ),
           TextButton(
             onPressed: () async {
@@ -130,8 +119,9 @@ class SettingsScreen extends StatelessWidget {
 
               // 🔄 Redirigimos al usuario al LoginScreen
               GoRouter.of(context).go('/login');
+            
             },
-            child: const Text("Logout", style: TextStyle(color: Colors.red)),
+            child: const Text("Cerrar", style: TextStyle(color: Colors.red)),
           ),
         ],
       ),

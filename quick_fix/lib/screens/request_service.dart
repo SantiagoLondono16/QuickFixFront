@@ -9,7 +9,8 @@ class RequestServiceScreen extends StatefulWidget {
 
 class _RequestServiceScreenState extends State<RequestServiceScreen> {
   final TextEditingController _priceController = TextEditingController();
-  String _selectedPaymentMethod = "Credit Card";
+  final TextEditingController _dateController = TextEditingController();
+  String _selectedPaymentMethod = "Tarjeta de Credito";
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              "Price",
+              "Precio",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 5),
@@ -33,22 +34,52 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
               controller: _priceController,
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
-                hintText: "Enter price",
+                hintText: "Ingresar Precio",
                 border: OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 20),
 
+            // Campo de texto para ingresar la fecha del servicio
+            const Text(
+              "Fecha del Sevicio",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 5),
+            TextField(
+              controller: _dateController,
+              readOnly: true,
+              decoration: const InputDecoration(
+                hintText: "Seleccionar fecha",
+                border: OutlineInputBorder(),
+              ),
+              onTap: () async {
+                DateTime? pickedDate = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime.now(),
+                  lastDate: DateTime(2101),
+                );
+                if (pickedDate != null) {
+                  setState(() {
+                    _dateController.text =
+                        "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
+                  });
+                }
+              },
+            ),
+            const SizedBox(height: 20),
+
             // Sección de método de pago
             const Text(
-              "Choose a payment method",
+              "Metodo de Pago",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
 
-            _buildPaymentOption("Credit Card", Icons.credit_card),
+            _buildPaymentOption("Tarjeta de Credito", Icons.credit_card),
             _buildPaymentOption("PayPal", Icons.account_balance_wallet),
-            _buildPaymentOption("Cash", Icons.money),
+            _buildPaymentOption("Efectivo", Icons.money),
 
             const SizedBox(height: 30),
 
@@ -63,7 +94,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
                       const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                   textStyle: const TextStyle(fontSize: 18),
                 ),
-                child: const Text("Confirm"),
+                child: const Text("Confirmar"),
               ),
             ),
           ],
@@ -92,9 +123,16 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
   // Función para confirmar la solicitud
   void _confirmRequest() {
     String price = _priceController.text;
+    String date = _dateController.text;
     if (price.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Please enter a price")),
+        const SnackBar(content: Text("Por favor ingresar precio")),
+      );
+      return;
+    }
+    if (date.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Por favor seleccionar fecha")),
       );
       return;
     }
@@ -102,7 +140,7 @@ class _RequestServiceScreenState extends State<RequestServiceScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
           content: Text(
-              "Service requested with $_selectedPaymentMethod for \$$price")),
+              "solicitud del servicio exitosa con el metodo de Pago  $_selectedPaymentMethod por el Precio de  \$$price el $date")),
     );
   }
 }
