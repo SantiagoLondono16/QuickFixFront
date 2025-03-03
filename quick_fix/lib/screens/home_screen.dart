@@ -157,7 +157,9 @@ class ServiceCard extends StatelessWidget {
         title: Text(name, style: const TextStyle(fontWeight: FontWeight.bold)),
         subtitle: Text(service),
         trailing: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            context.push('/profile');
+          },
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.blue,
             shape:
