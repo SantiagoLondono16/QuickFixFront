@@ -39,7 +39,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 TextField(
                   controller: nameController,
                   decoration: InputDecoration(
-                    labelText: "Name",
+                    labelText: "Nombre",
                     border: OutlineInputBorder(),
                     prefixIcon: Icon(Icons.person),
                   ),
@@ -48,7 +48,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 TextField(
                   controller: emailController,
                   decoration: InputDecoration(
-                    labelText: "Email",
+                    labelText: "Correo electrónico",
                     border: OutlineInputBorder(),
                     prefixIcon: Icon(Icons.email),
                   ),
@@ -57,7 +57,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 DropdownButtonFormField<String>(
                   value: selectedRole,
                   decoration: const InputDecoration(
-                    labelText: "Select Role",
+                    labelText: "Selecione un rol",
                     border: OutlineInputBorder(),
                     prefixIcon: Icon(Icons.person_outline),
                   ),
@@ -77,7 +77,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   controller: passwordController,
                   obscureText: true,
                   decoration: InputDecoration(
-                    labelText: "Password",
+                    labelText: "Contraseña",
                     border: OutlineInputBorder(),
                     prefixIcon: Icon(Icons.lock),
                     suffixIcon: Icon(Icons.visibility_off),
@@ -88,7 +88,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   controller: confirmPasswordController,
                   obscureText: true,
                   decoration: InputDecoration(
-                    labelText: "Confirm Password",
+                    labelText: "Confirmar contraseña",
                     border: OutlineInputBorder(),
                     prefixIcon: Icon(Icons.lock),
                     suffixIcon: Icon(Icons.visibility_off),
@@ -132,19 +132,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(vertical: 15),
                     ),
-                    child: Text("Register", style: TextStyle(fontSize: 18)),
+                    child: Text("Registrar", style: TextStyle(fontSize: 18)),
                   ),
                 ),
                 const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Already have an account?"),
+                    Text("Ya tiene cuenta?"),
                     TextButton(
                       onPressed: () {
                         GoRouter.of(context).go('/login');
                       },
-                      child: Text("Login"),
+                      child: Text("Inicio de sesión"),
                     ),
                   ],
                 ),

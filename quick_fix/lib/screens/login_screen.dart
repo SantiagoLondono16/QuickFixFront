@@ -21,14 +21,14 @@ class LoginScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Login",
+                "Inicio de sesión",
                 style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 20),
               TextField(
                 controller: emailController,
                 decoration: InputDecoration(
-                  labelText: "Correo electronico",
+                  labelText: "Correo electrónico",
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.email),
                 ),
@@ -38,7 +38,7 @@ class LoginScreen extends StatelessWidget {
                 controller: passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
-                  labelText: "Password",
+                  labelText: "Contraseña",
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.lock),
                   suffixIcon: Icon(Icons.visibility_off),
@@ -51,7 +51,7 @@ class LoginScreen extends StatelessWidget {
                   onPressed: () {
                     // Aquí puedes agregar la lógica de recuperación de contraseña
                   },
-                  child: Text("Forgot Password?"),
+                  child: Text("Olvidó su contraseña?"),
                 ),
               ),
               const SizedBox(height: 20),
@@ -74,19 +74,20 @@ class LoginScreen extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(vertical: 15),
                   ),
-                  child: Text("Login", style: TextStyle(fontSize: 18)),
+                  child:
+                      Text("Inicio de sesión", style: TextStyle(fontSize: 18)),
                 ),
               ),
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Don't have an account?"),
+                  Text("No tiene cuenta?"),
                   TextButton(
                     onPressed: () {
                       GoRouter.of(context).go('/register');
                     },
-                    child: Text("Register"),
+                    child: Text("Registrar"),
                   ),
                 ],
               ),
