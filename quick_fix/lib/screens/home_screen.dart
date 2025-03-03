@@ -189,7 +189,9 @@ class ServiceCard extends StatelessWidget {
             ),
             const SizedBox(width: 5),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                context.push('/profile');
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
                 shape: RoundedRectangleBorder(
