@@ -11,13 +11,9 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String selectedCategory = "Todos";
-  final List<Map<String, String>> services = [
-    {"name": "Camilo", "service": "Plomeria", "image": "assets/Plomero.jpg"},
-    {
-      "name": "Andres",
-      "service": "Carpinteria",
-      "image": "assets/Carpintero.jpg"
-    },
+  final List<Map<String, dynamic>> services = [
+    {"name": "Camilo", "service": "Plomeria", "image": "assets/Plomero.jpg", "rating": 3},
+    {"name": "Andres", "service": "Carpinteria", "image": "assets/Carpintero.jpg", "rating": 5},
   ];
 
   @override
@@ -54,8 +50,12 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.notifications, color: Colors.white)),
+  onPressed: () {
+    GoRouter.of(context).go('/notifications-user');
+  },
+  icon: const Icon(Icons.notifications, color: Colors.white),
+),
+
         ],
       ),
       body: Padding(
@@ -74,7 +74,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(height: 20),
 
-            // Botones de categoría dinámicos
             SizedBox(
               height: 40,
               child: ListView(
@@ -112,7 +111,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(height: 20),
 
-            // Sección de servicios cercanos filtrados
             const Text("Cercanos a ti",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 10),
@@ -125,7 +123,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     .map((service) => ServiceCard(
                         name: service["name"]!,
                         service: service["service"]!,
-                        imageUrl: service["image"]!))
+                        imageUrl: service["image"]!,
+                        rating: service["rating"]!))
                     .toList(),
               ),
             ),
@@ -137,35 +136,68 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-// Widget para mostrar tarjetas de servicio
 class ServiceCard extends StatelessWidget {
   final String name;
   final String service;
   final String imageUrl;
+  final int rating;
 
   const ServiceCard(
       {super.key,
       required this.name,
       required this.service,
-      required this.imageUrl});
+      required this.imageUrl,
+      required this.rating});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        leading: CircleAvatar(backgroundImage: AssetImage(imageUrl)),
-        title: Text(name, style: const TextStyle(fontWeight: FontWeight.bold)),
-        subtitle: Text(service),
-        trailing: ElevatedButton(
-          onPressed: () {
-            context.push('/profile');
+        leading: GestureDetector(
+          onTap: () {
+            GoRouter.of(context).go('/profile/$name');   // ACA VA LA DIRECCION DEL PERFIL DEL PROVEEDOR
           },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          ),
-          child: const Text("Contratar", style: TextStyle(color: Colors.white)),
+          child: CircleAvatar(backgroundImage: AssetImage(imageUrl)),
+        ),
+        title: Text(name, style: const TextStyle(fontWeight: FontWeight.bold)),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(service),
+            Row(
+              children: List.generate(5, (index) {
+                return Icon(
+                  index < rating ? Icons.star : Icons.star_border,
+                  color: Colors.amber,
+                  size: 16,
+                );
+              }),
+            ),
+          ],
+        ),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.greenAccent,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8)),
+              ),
+              child: const Icon(Icons.chat, color: Colors.white),
+            ),
+            const SizedBox(width: 5),
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8)),
+              ),
+              child: const Text("Contratar", style: TextStyle(color: Colors.white)),
+            ),
+          ],
         ),
       ),
     );

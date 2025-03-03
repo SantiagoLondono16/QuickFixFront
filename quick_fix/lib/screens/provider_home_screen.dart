@@ -45,9 +45,12 @@ class ProviderHomeScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.notifications, color: Colors.white),
-          ),
+  onPressed: () {
+    GoRouter.of(context).go('/notifications');
+  },
+  icon: const Icon(Icons.notifications, color: Colors.white),
+),
+
         ],
       ),
       body: Padding(

@@ -9,10 +9,10 @@ import 'package:quick_fix/screens/welcome_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/register_screen.dart';
-import 'screens/profile_screen.dart';
 import 'screens/chat_screen.dart';
-import 'screens/provider_requests_screen.dart';
-import 'screens/provider_services_screen.dart';
+import 'screens/notifications_screens_provider.dart';
+import 'screens/notifications_screen_user.dart';
+
 
 final GoRouter router = GoRouter(
   routes: [
@@ -32,10 +32,7 @@ final GoRouter router = GoRouter(
       path: '/register',
       builder: (context, state) => const RegisterScreen(),
     ),
-    GoRoute(
-      path: '/profile',
-      builder: (context, state) => const ProfileScreen(),
-    ),
+   
     GoRoute(
       path: '/request-service',
       builder: (context, state) => const RequestServiceScreen(),
@@ -61,12 +58,15 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const ProviderSettingsScreen(),
     ),
     GoRoute(
-      path: '/provider-services',
-      builder: (context, state) => const ProviderServicesScreen(),
+      path: '/notifications',
+      builder: (context, state) => const NotificationsScreensProvider(),
     ),
-    GoRoute(
-      path: '/provider-requests',
-      builder: (context, state) => const ProviderRequestsScreen(),
+
+GoRoute(
+      path: '/notifications-user',
+      builder: (context, state) => const NotificationsScreenUser(),
     ),
+
+
   ],
 );
