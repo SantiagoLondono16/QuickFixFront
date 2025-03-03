@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quick_fix/providers/auth_provider.dart';
 import 'routes.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_fix/providers/chat_provider.dart';
@@ -10,7 +11,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => ChatProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => ChatProvider()),
+        ChangeNotifierProvider(create: (context) => AuthProvider())
+      ],
       child: MaterialApp.router(
         routerConfig: router,
         debugShowCheckedModeBanner: false,

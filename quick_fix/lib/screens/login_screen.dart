@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:quick_fix/providers/auth_provider.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
+    final emailController = TextEditingController();
+    final passwordController = TextEditingController();
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -20,14 +26,16 @@ class LoginScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               TextField(
+                controller: emailController,
                 decoration: InputDecoration(
-                  labelText: "Email",
+                  labelText: "Correo electronico",
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.email),
                 ),
               ),
               const SizedBox(height: 20),
               TextField(
+                controller: passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: "Password",
@@ -50,8 +58,18 @@ class LoginScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {
-                    GoRouter.of(context).go('/home');
+                  onPressed: () async {
+                    bool sucess = await authProvider.login(
+                        emailController.text, passwordController.text);
+                    if (sucess) {
+                      GoRouter.of(context).go('/home');
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                            content: Text(
+                                "Error en el login. Verifica tus credenciales")),
+                      );
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(vertical: 15),
