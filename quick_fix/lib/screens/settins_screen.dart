@@ -33,26 +33,15 @@ class SettingsScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 30),
-
-          // Opciones de configuración
           _buildSettingsOption(
             context,
             title: "Mis Servicios",
             icon: Icons.build,
-            onTap: () {},
+            onTap: () {
+              GoRouter.of(context).go('/history');
+            },
           ),
-          _buildSettingsOption(
-            context,
-            title: "Chat",
-            icon: Icons.message,
-            onTap: () {},
-          ),
-          _buildSettingsOption(
-            context,
-            title: "Notificationes",
-            icon: Icons.notifications,
-            onTap: () {},
-          ),
+
           _buildSettingsOption(
             context,
             title: "Ayuda",
