@@ -155,7 +155,7 @@ class ServiceCard extends StatelessWidget {
       child: ListTile(
         leading: GestureDetector(
           onTap: () {
-            GoRouter.of(context).go('/profile/$name');   // ACA VA LA DIRECCION DEL PERFIL DEL PROVEEDOR
+            context.push('/profile');
           },
           child: CircleAvatar(backgroundImage: AssetImage(imageUrl)),
         ),
@@ -179,7 +179,9 @@ class ServiceCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                context.push('/chat');
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.greenAccent,
                 shape: RoundedRectangleBorder(
@@ -190,7 +192,7 @@ class ServiceCard extends StatelessWidget {
             const SizedBox(width: 5),
             ElevatedButton(
               onPressed: () {
-                context.push('/profile');
+                context.push('/request-service');
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,

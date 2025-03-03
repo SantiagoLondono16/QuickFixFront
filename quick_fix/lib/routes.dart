@@ -66,7 +66,6 @@ final GoRouter router = GoRouter(
       path: '/profile',
       builder: (context, state) => const ProfileScreen(),
     ),
-
 GoRoute(
       path: '/notifications-user',
       builder: (context, state) => const NotificationsScreenUser(),
