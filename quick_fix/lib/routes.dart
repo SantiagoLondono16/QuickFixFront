@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quick_fix/screens/History_screen.dart';
 import 'package:quick_fix/screens/provider_home_screen.dart';
+import 'package:quick_fix/screens/provider_requests_screen.dart';
+import 'package:quick_fix/screens/provider_services_screen.dart';
 import 'package:quick_fix/screens/provider_settings_screen.dart';
 import 'package:quick_fix/screens/request_service.dart';
 import 'package:quick_fix/screens/settins_screen.dart';
@@ -13,7 +15,6 @@ import 'screens/chat_screen.dart';
 import 'screens/notifications_screens_provider.dart';
 import 'screens/notifications_screen_user.dart';
 import 'screens/profile_screen.dart';
-
 
 final GoRouter router = GoRouter(
   routes: [
@@ -33,7 +34,6 @@ final GoRouter router = GoRouter(
       path: '/register',
       builder: (context, state) => const RegisterScreen(),
     ),
-   
     GoRoute(
       path: '/request-service',
       builder: (context, state) => const RequestServiceScreen(),
@@ -66,11 +66,17 @@ final GoRouter router = GoRouter(
       path: '/profile',
       builder: (context, state) => const ProfileScreen(),
     ),
-GoRoute(
+    GoRoute(
       path: '/notifications-user',
       builder: (context, state) => const NotificationsScreenUser(),
     ),
-
-
+    GoRoute(
+      path: '/provider-requests',
+      builder: (context, state) => const ProviderRequestsScreen(),
+    ),
+    GoRoute(
+      path: '/provider-services',
+      builder: (context, state) => const ProviderServicesScreen(),
+    ),
   ],
 );
